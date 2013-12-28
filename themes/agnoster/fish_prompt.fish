@@ -98,7 +98,7 @@ function prompt_user -d "Display actual user if different from $default_user"
 end
 
 function prompt_dir -d "Display the actual directory"
-  prompt_segment blue black (prompt_pwd)
+  prompt_segment red black (prompt_pwd)
 end
 
 
@@ -141,12 +141,18 @@ function prompt_status -d "the symbols for a non zero exit status, root and back
     end
 end
 
+function prompt_date
+  set date_str (date "+%-l:%M:%S")
+  prompt_segment 666 373737 "$date_str"
+end
+
 # ===========================
 # Apply theme
 # ===========================
 
 function fish_prompt
   set -g RETVAL $status
+  prompt_date
   prompt_status
   prompt_user
   prompt_dir
